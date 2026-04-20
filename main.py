@@ -7,8 +7,8 @@ objBools = []
 #---------------------------------Экран с вводом количества объектов-----------------------------------
 wind1 = tk.Tk()
 wind1.title("Ввод")
-wind1.geometry("300x100")
-text = tk.Label(wind1, text="Введите количество сортируемых объектов")
+wind1.geometry("330x80")
+text = tk.Label(wind1, text="Введите количество сортируемых объектов (макс. - 35)")
 text.pack()
 objNum = tk.Entry(width=20)
 objNum.pack()
@@ -17,6 +17,8 @@ def onclick():
     objAmount = int(objNum.get())
     if (objAmount > 0):
         wind1.quit()
+    if (objAmount > 35):
+        objAmount = 35
 button = tk.Button(wind1, text="Начать сортировку", command=onclick)
 button.pack()
 wind1.mainloop()
@@ -27,7 +29,7 @@ wind1.mainloop()
 wind1.quit()
 wind1.destroy()
 for i in range(objAmount):
-    objs.append(i)
+    objs.append(i + 1)
     objBools.append(True)
 
 mw = tk.Tk()
@@ -38,11 +40,11 @@ height = 200 + objAmount * 5
 
 mw.geometry(str(width) + "x" + str(height))
 
-
 canvas = tk.Canvas(mw, width = width, height = height)
 
 for i in range(len(objs)):
-    canvas.create_rectangle(100, 100, 300, 200, fill="green" if objBools[i] else "red", outline="green" if objBools[i] else "red")
+    canvas.create_rectangle(50 * i + 50, height - 150, 50 * (i + 2), height - 150 - 5 * objs[i], fill="green" if objBools[i] else "red",
+                            outline="green" if objBools[i] else "red", tags="object", )
 canvas.pack()
 
 mw.mainloop()
