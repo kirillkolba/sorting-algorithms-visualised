@@ -1,3 +1,3 @@
-visualised sorting algorithms:
--bogo sort
+visualised sorting algorithms: <br>
+-bogo sort <br>
 there are no more algorithms
